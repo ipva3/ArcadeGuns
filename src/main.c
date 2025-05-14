@@ -6,33 +6,29 @@ int main(void)
 {
   HINSTANCE hInstance = GetModuleHandle(0);
 
-  // Register the window class.
-  const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+  const wchar_t CLASS_NAME[]  = L"ArcadeGunsClass";
   
   WNDCLASS wc = {0};
 
   wc.lpfnWndProc   = WindowProc;
   wc.hInstance     = hInstance;
   wc.lpszClassName = CLASS_NAME;
+  wc.hIcon         = LoadIcon(hInstance, L"MAINICON");
 
   RegisterClass(&wc);
 
-  // Create the window.
-
   HWND hwnd = CreateWindowEx(
-    0,                              // Optional window styles.
-    CLASS_NAME,                     // Window class
-    L"Learn to Program Windows",    // Window text
-    WS_OVERLAPPEDWINDOW,            // Window style
+    0,
+    CLASS_NAME,
+    L"Arcage Guns",
+    WS_OVERLAPPEDWINDOW,
 
-    // Size and position
     CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 
-    NULL,       // Parent window    
-    NULL,       // Menu
-    hInstance,  // Instance handle
-    NULL        // Additional application data
-    );
+    NULL,
+    NULL,
+    hInstance,
+    NULL);
 
   if (hwnd == NULL)
   {
@@ -40,8 +36,6 @@ int main(void)
   }
 
   ShowWindow(hwnd, SW_SHOW);
-
-  // Run the message loop.
 
   MSG msg = {0};
   while (GetMessage(&msg, NULL, 0, 0) > 0)
@@ -66,9 +60,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hwnd, &ps);
 
-      // All painting occurs here, between BeginPaint and EndPaint.
-
-      FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+      FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+2));
 
       EndPaint(hwnd, &ps);
     }

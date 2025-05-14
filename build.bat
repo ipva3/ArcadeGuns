@@ -20,7 +20,7 @@ if "%release%"=="1" set debug=0 && echo [release mode]
 set common=     /I..\src /nologo -DUNICODE -D_UNICODE
 set cl_debug=   call cl /Od /DBUILD_DEBUG=1 %common%
 set cl_release= call cl /O2 /DBUILD_DEBUG=0 %common%
-set cl_link=    /link user32.lib
+set cl_link=    /link user32.lib "main.res"
 set out=        /out:.\bin\
 
 :: --- Compile/Link Lines ---
@@ -32,6 +32,7 @@ if not exist build mkdir build
 pushd build
 if not exist bin mkdir bin
 
-%compile% "..\src\main.c" %cl_link% %out%arcadeguns.exe || exit /b 1
+call rc /nologo -fo ".\main.res" "..\src\main.rc"
+%compile% "..\src\main.c"  %cl_link% %out%arcadeguns.exe || exit /b 1
 
 popd
