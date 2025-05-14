@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Lanuch",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/bin/arcadeguns.exe",
+      "cwd": "${workspaceFolder}/build/bin",
+      "windows": {
+        "console": "integratedTerminal"
+      }
+    }
+  ]
+}
